@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BoredLogicServiceService } from '../../service/bored-logic-service.service';
 
 @Component({
   selector: 'bored-manager',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoredManagerComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(public boredLogicService:BoredLogicServiceService) { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

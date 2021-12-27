@@ -1,1 +1,110 @@
-<p>bored-manager works!</p>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header mt-3">
+        <h4 class="modal-title" id="exampleModalLabel">New Idea</h4>
+        <button type="button" class="close" data-dismiss="modal" id="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="loading d-flex justify-content-center" *ngIf="boredLogicService.isLoading">
+        <img width="150px" src="../../../../assets/images/loading.gif" alt="loading...">
+      </div>
+
+      <ng-container *ngIf="!boredLogicService.isLoading">
+        <div class="modal-body">
+          {{boredLogicService.data}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="boredLogicService.worked(boredLogicService.text)">Next One</button>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal1" >Like it !</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Modal for Thumbs UP -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Well Done !!!</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body d-flex justify-content-center">
+          <img width="200px" src="../../../../assets/images/thumbsUP.gif" alt="loading...">
+        </div>
+        <div class="modal-footer">
+          <button (click)="boredLogicService.refresh()" type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container bg-light">
+  <div class="header bg-light p-2">
+    <section class="header-section">
+      <div class="h1 text-primary m-3"
+        style="font-weight: bold; text-decoration: underline; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+        Bored APP
+      </div>
+      <div>
+        <p class="text text-dark border border-white p-2 rounded"> Here you can get an idea to do some intresting
+          stuff... Try Now.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="main">
+
+
+    <section class="card-section m-2 ">
+
+
+      <div class="h2 text-dark mb-3">
+        Topics
+      </div>
+
+
+      <div class="card mb-5" *ngFor="let item of boredLogicService.list1;let i=index;">
+        <h5 class="card-header text-dark bg-white"># {{i+1}} </h5>
+        <div class="card-body m-2">
+          <h2 (click)="boredLogicService.worked(item)" data-toggle="modal" data-target="#exampleModal"
+            style="cursor: pointer ;" class="card-title">{{item}}</h2>
+          <p class="card-text"> </p>
+          <a (click)="boredLogicService.worked(item)" data-toggle="modal" data-target="#exampleModal"
+            class="btn btn-success text-white">Get Idea</a>
+        </div>
+      </div>
+
+
+    </section>
+
+  </div>
+
+</div>
