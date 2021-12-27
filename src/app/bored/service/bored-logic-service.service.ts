@@ -7,7 +7,16 @@ import { BoredDataServiceService } from './bored-data-service.service';
 })
 export class BoredLogicServiceService {
 
-  public data={};
+  public data:{activity:string,accessibility:number,participants:string,price:number,key:number,link:string,type:string}={
+    activity:'',
+    accessibility:0,
+    key:0,
+    link:'',
+    type:'',
+    participants:'',
+    price:0
+  };
+  
   public list=[
     "education", "music", "relaxation", "busywork", "charity", "cooking", "diy", "recreational", "social" 
   ]
@@ -20,7 +29,7 @@ export class BoredLogicServiceService {
   public isLoading=false;
   public hasError=false;
   public errorMessage=''
-
+  public isHadLink=false;
   public likeIt=false;
 
   constructor(public boredDataService:BoredDataServiceService, public route:Router) {
@@ -36,6 +45,7 @@ export class BoredLogicServiceService {
       this.isLoading=false;
       this.hasError=false;
       this.data=data;
+      this.isHadLink=(data.link==='')?false:true;
       console.log(data)
     },(err:any)=>{
       this.isLoading=false;
@@ -47,6 +57,10 @@ export class BoredLogicServiceService {
   refresh(){
     let url=window.location;
     window.location=url;
+  }
+
+  goToLink(){
+    window.open(this.data.link,"_blank");
   }
 
 }
